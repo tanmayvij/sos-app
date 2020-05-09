@@ -1,8 +1,12 @@
 package com.example.sosapp;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.util.Log;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -46,6 +50,30 @@ public class MainActivity extends AppCompatActivity {
                     Manifest.permission.SEND_SMS,
                     Manifest.permission.RECORD_AUDIO
             }, reqCode);
+        }
+    }
+
+    public void doAction() {
+        // Play alarm
+        MediaPlayer mp = MediaPlayer.create(this, R.raw.alarm);
+        mp.setVolume((float)1.0, (float)1.0);
+        mp.start();
+
+        // Send SMS
+        SmsManager sms = SmsManager.getDefault();
+        SharedPreferences spref = this.getPreferences(Context.MODE_PRIVATE);
+
+        String name, phone, message;
+
+        for(int i=0;i<5;i++)
+        {
+            phone = spref.getString("phone" + String.valueOf(i+1), null);
+            name = spref.getString("name" + String.valueOf(i+1), null);
+            message = "Hello " + name + ", I am in distress! Need your help. Please call me soon!";
+            if(phone != null && name != null)
+            {
+                sms.sendTextMessage(phone, null, message, null, null);
+            }
         }
     }
 
