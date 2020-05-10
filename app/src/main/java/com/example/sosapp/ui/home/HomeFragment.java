@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.sosapp.MainActivity;
 import com.example.sosapp.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -33,11 +34,12 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        FloatingActionButton fab = root.findViewById(R.id.save);
+        FloatingActionButton fab = root.findViewById(R.id.sos);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(v, "Saved successfully.", Snackbar.LENGTH_LONG)
+                ((MainActivity)getActivity()).doAction();
+                Snackbar.make(v, "SOS Triggered!", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });

@@ -10,7 +10,7 @@ public class HomeViewModel extends ViewModel {
 
     public HomeViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("Hello! Say help 3 times to trigger an SOS Alert.");
+        mText.setValue("Hello! Say 'help' 3 times or press the button to trigger an SOS Alert.");
     }
 
     public LiveData<String> getText() {
