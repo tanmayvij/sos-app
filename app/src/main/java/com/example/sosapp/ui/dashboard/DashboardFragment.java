@@ -3,6 +3,7 @@ package com.example.sosapp.ui.dashboard;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +39,7 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                SharedPreferences spref = getActivity().getPreferences(Context.MODE_PRIVATE);
+                SharedPreferences spref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
                 SharedPreferences.Editor editor = spref.edit();
 
                 String phone1, name1, phone2, name2, phone3, name3, phone4, name4, phone5, name5;
